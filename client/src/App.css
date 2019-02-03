@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+#Carosel {
+  height:500px;
+  min-width: 500px;
+  max-width: 500px;
+}
+
+.c-l-btn {
+  text-align: left;
+}
+
+.c-r-btn {
+  text-align: right;
+}
+
+.c-fill-x {
+  height: 100%;
+}
+
+.m {
+  margin: 5px !important;
+}
+
+.ml{
+  margin-left: 5px !important;
+}
+
+.centre {
+  text-align: center;
+}
+
+.i {
+  height: 400px;
+  width: 30%;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.i-border{
+  border: 1px;
+  border-color: silver;
+  border-style: solid;
+}
+
+.godPaper{
+  width: 500px;
+}
