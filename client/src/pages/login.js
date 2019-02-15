@@ -62,7 +62,7 @@ class Login extends Component{
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="body1" className={classes.formEntry} >
-                            Don't have an account? Sign up <a href='~/signup'>here</a>
+                            Don't have an account? Sign up <a href='/signup'>here</a>
                         </Typography>
                     </Grid>
                 </Grid>

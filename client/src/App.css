@@ -2,10 +2,6 @@
   text-align: center;
 }
 
-body{
-  background: #eee;
-}
-
 .App-intro {
   font-size: large;
 }
@@ -14,6 +10,10 @@ body{
   height:500px;
   min-width: 500px;
   max-width: 500px;
+}
+
+.height-fill{
+  height:100%;
 }
 
 .c-l-btn {

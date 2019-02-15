@@ -36,14 +36,14 @@ class App extends Component {
 
   renderNotLoggedIn(){
     return (
-      <div>
-        <Link className="a-button" exact={true} to={`/login`}>
-          <Button>
+      <div className='height-fill'>
+        <Link className="a-button height-fill" exact={true} to={`/login`}>
+          <Button className="height-fill">
           Log In
           </Button>
         </Link>
-        <Link className="a-button" exact={true} to={`/signup`}>
-          <Button>
+        <Link className="a-button height-fill" exact={true} to={`/signup`}>
+          <Button className="height-fill">
           Sign Up
           </Button>
         </Link>
