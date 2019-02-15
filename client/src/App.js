@@ -6,6 +6,7 @@ import Carosel from './Components/carosel';
 import Info from './Components/info'
 import GodRegion from './Components/godRegion'
 import Login from './pages/login'
+import logo from './images/ValhallaSmallest.png'
 
 const styles = theme => ({
   heading:{
@@ -62,7 +63,12 @@ class App extends Component {
                 <Grid container>
                   <Grid item xs={8} sm={6} md={6}>
                     <Typography variant="headline" align="left" color="inherit" className={classes.heading}>
-                      The Nine
+                      <Link to='/' className="a-button">
+                          <img src={logo} style={{'margin-right':'5px'}} />
+                        <span>
+                          Valhalla
+                        </span>
+                      </Link>
                     </Typography>
                   </Grid>
                   <Grid align="right" item xs={4} sm={6} md={6}>

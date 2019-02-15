@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+body{
+  background: #eee;
+}
+
 .App-intro {
   font-size: large;
 }
