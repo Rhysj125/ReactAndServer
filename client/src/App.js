@@ -5,6 +5,8 @@ import {Grid, AppBar, Typography, Button, withStyles} from '@material-ui/core'
 import Carosel from './Components/carosel';
 import Info from './Components/info'
 import GodRegion from './Components/godRegion'
+import Login from './pages/login'
+import logo from './images/ValhallaSmallest.png'
 
 const styles = theme => ({
   heading:{
@@ -15,6 +17,40 @@ const styles = theme => ({
 })
 
 class App extends Component {
+
+  constructor(props){
+    super(props)
+
+    this.state = {
+      isLoggedIn: false
+    }
+  }
+
+  renderLoggedIn(){
+    return(
+      <div>
+        Logged in as Rhys
+      </div>
+    )
+  }
+
+  renderNotLoggedIn(){
+    return (
+      <div className='height-fill'>
+        <Link className="a-button height-fill" exact={true} to={`/login`}>
+          <Button className="height-fill">
+          Log In
+          </Button>
+        </Link>
+        <Link className="a-button height-fill" exact={true} to={`/signup`}>
+          <Button className="height-fill">
+          Sign Up
+          </Button>
+        </Link>
+      </div>
+    )
+  }
+
   render() {
     const {classes} = this.props
 
@@ -27,25 +63,22 @@ class App extends Component {
                 <Grid container>
                   <Grid item xs={8} sm={6} md={6}>
                     <Typography variant="headline" align="left" color="inherit" className={classes.heading}>
-                      The Nine
+                      <Link to='/' className="a-button">
+                          <img src={logo} style={{'margin-right':'5px'}} />
+                        <span>
+                          Valhalla
+                        </span>
+                      </Link>
                     </Typography>
                   </Grid>
                   <Grid align="right" item xs={4} sm={6} md={6}>
-                      <Link className="a-button" exact={true} to={`/login`}>
-                        <Button>
-                        Log In
-                        </Button>
-                      </Link>
-                      <Link className="a-button" exact={true} to={`/signup`}>
-                        <Button>
-                        Sign Up
-                        </Button>
-                      </Link>
+                    {this.state.isLoggedIn === true ? this.renderLoggedIn() : this.renderNotLoggedIn()}
                   </Grid>
                 </Grid>
               </AppBar>
               <body>
                 <Route path='/' exact={true} component={body} />
+                <Route path='/login' exact={true} component={login} />
               </body>
             </Grid>
           </Grid>
@@ -65,6 +98,12 @@ const body = () => {
         <GodRegion />
       </Grid>
     </div>
+  )
+}
+
+const login = () => {
+  return(
+    <Login />
   )
 }
 

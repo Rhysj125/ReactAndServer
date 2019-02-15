@@ -12,6 +12,10 @@
   max-width: 500px;
 }
 
+.height-fill{
+  height:100%;
+}
+
 .c-l-btn {
   text-align: left;
 }
