@@ -59,7 +59,7 @@ class GodRegion extends Component{
     render(){
         return (
             <div>
-                <button onClick={this.postGod}>Press me</button>
+                <button onClick={this.postGod}>Add Loki God</button>
             </div>
         )
     }
