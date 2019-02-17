@@ -7,6 +7,7 @@ import Info from './Components/info'
 import GodRegion from './Components/godRegion'
 import Login from './pages/login'
 import logo from './images/ValhallaSmallest.png'
+import Signup from './pages/signup';
 
 const styles = theme => ({
   heading:{
@@ -64,7 +65,7 @@ class App extends Component {
                   <Grid item xs={8} sm={6} md={6}>
                     <Typography variant="headline" align="left" color="inherit" className={classes.heading}>
                       <Link to='/' className="a-button">
-                          <img src={logo} style={{'margin-right':'5px'}} />
+                          <img src={logo} style={{marginRight:'5px'}} alt="" />
                         <span>
                           Valhalla
                         </span>
@@ -76,10 +77,11 @@ class App extends Component {
                   </Grid>
                 </Grid>
               </AppBar>
-              <body>
+              <div id="body">
                 <Route path='/' exact={true} component={body} />
-                <Route path='/login' exact={true} component={login} />
-              </body>
+                <Route path='/login' exact={true} component={Login} />
+                <Route path='/signup' exact={true} component={Signup} />
+              </div>
             </Grid>
           </Grid>
         </div>
@@ -98,12 +100,6 @@ const body = () => {
         <GodRegion />
       </Grid>
     </div>
-  )
-}
-
-const login = () => {
-  return(
-    <Login />
   )
 }
 
