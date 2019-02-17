@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import { Card, withStyles, Typography, TextField, Grid, Button } from '@material-ui/core'
-import { Link } from 'react-router-dom'
 import Logo from '../images/ValhallaSmall.png'
 
 const styles = theme => ({
@@ -33,14 +32,65 @@ class Signup extends Component{
         this.state = {
             username: null,
             password: null,
-            confirmPassword: null
+            confirmPassword: null,
+            error: null,
+            validUser: {
+                username: null,
+                password: null,
+            }
         }
 
         this.handleTextInputChange = this.handleTextInputChange.bind(this)
+        this.validateUser = this.validateUser.bind(this)
     }
 
     handleTextInputChange = e => {
         this.setState({ [e.target.name]: e.target.value })
+    }
+
+    validateUser(){
+        if(this.state.password === this.state.confirmPassword && this.state.username !== ""){
+            this.setState({
+                error: "",
+                validUser: {
+                    username: this.state.username,
+                    password: this.state.password
+                },
+            })
+        }
+        
+        if(this.state.username === "" || this.state.username === null){
+            this.setState({
+                error: "Please enter a username",
+            })
+        }else if(this.state.password === "" || this.state.password === null){
+            this.setState({
+                error: "Please enter a password",
+            })
+        }else if(this.state.password !== this.state.confirmPassword){
+            console.log("Password mismatch")
+            this.setState({
+                error: "Passwords do not match",
+            })
+        }
+    }
+
+    signup = async () =>{
+        console.log(JSON.stringify(this.state))
+
+        const response = await fetch('/user', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'ContentType' : 'application/json',
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(this.state),
+        }).then(res => {
+            console.log(res)
+        }).catch(err => console.log(err))
+
+        console.log(response)
     }
 
     render(){
@@ -53,24 +103,29 @@ class Signup extends Component{
                 <Typography variant="headline" className={classes.formTitle}>
                     Sign up to Valhalla
                 </Typography>
+
+                <Typography variant="body1" color="error">
+                    {this.state.error}
+                </Typography>
+
                 <Grid container align="center" className={classes.form}>
                     <Grid item xs={12}>
-                        <TextField placeholder="Username" label="Username" fullWidth className={classes.formEntry} name="username" onChange={this.handleTextInputChange} />
+                        <TextField placeholder="Username" label="Username" fullWidth className={classes.formEntry} name="username" onChange={this.handleTextInputChange} required />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField placeholder="Password" label="Password" type="password" fullWidth className={classes.formEntry} name="password" onChange={this.handleTextInputChange} />
+                        <TextField placeholder="Password" label="Password" type="password" fullWidth className={classes.formEntry} name="password" onChange={this.handleTextInputChange} required />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField placeholder="confirm Password" label="ConfirmPassword" type="password" fullWidth className={classes.formEntry} name="confirmPassword" onChange={this.handleTextInputChange} />
+                        <TextField placeholder="confirm Password" label="Confirm Password" type="password" fullWidth className={classes.formEntry} name="confirmPassword" onChange={this.handleTextInputChange} required />
                     </Grid>
                     <Grid item xs={12}>
-                        <Button variant="contained" color="primary" fullWidth>
-                            Log In
+                        <Button variant="contained" color="primary" fullWidth onClick={this.validateUser}>
+                            Sign up
                         </Button>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="body1" className={classes.formEntry} >
-                            Already have an account? Log in <a href='/signup'>here</a>
+                            Already have an account? Log in <a href='/login'>here</a>
                         </Typography>
                     </Grid>
                 </Grid>

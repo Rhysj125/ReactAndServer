@@ -37,7 +37,7 @@ class Login extends Component{
 
         return(
             <Card className={classes.card}>
-                <img src={Logo} style={{marginTop : '10px'}} />    
+                <img src={Logo} style={{marginTop : '10px'}} alt="" />    
                 <Typography variant="headline" className={classes.formTitle}>
                     Log in to Valhalla
                 </Typography>

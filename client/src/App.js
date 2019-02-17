@@ -65,7 +65,7 @@ class App extends Component {
                   <Grid item xs={8} sm={6} md={6}>
                     <Typography variant="headline" align="left" color="inherit" className={classes.heading}>
                       <Link to='/' className="a-button">
-                          <img src={logo} style={{marginRight:'5px'}} />
+                          <img src={logo} style={{marginRight:'5px'}} alt="" />
                         <span>
                           Valhalla
                         </span>
