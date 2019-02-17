@@ -26,9 +26,21 @@ const styles = theme => ({
     }
 })
 
-class Login extends Component{
+class Signup extends Component{
     constructor(props){
         super(props)
+
+        this.state = {
+            username: null,
+            password: null,
+            confirmPassword: null
+        }
+
+        this.handleTextInputChange = this.handleTextInputChange.bind(this)
+    }
+
+    handleTextInputChange = e => {
+        this.setState({ [e.target.name]: e.target.value })
     }
 
     render(){
@@ -39,30 +51,26 @@ class Login extends Component{
             <Card className={classes.card}>
                 <img src={Logo} style={{marginTop : '10px'}} />    
                 <Typography variant="headline" className={classes.formTitle}>
-                    Log in to Valhalla
+                    Sign up to Valhalla
                 </Typography>
                 <Grid container align="center" className={classes.form}>
                     <Grid item xs={12}>
-                        <TextField placeholder="Username" label="Username" fullWidth className={classes.formEntry} />
+                        <TextField placeholder="Username" label="Username" fullWidth className={classes.formEntry} name="username" onChange={this.handleTextInputChange} />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField placeholder="Password" label="Password" type="password" fullWidth className={classes.formEntry} />
+                        <TextField placeholder="Password" label="Password" type="password" fullWidth className={classes.formEntry} name="password" onChange={this.handleTextInputChange} />
                     </Grid>
                     <Grid item xs={12}>
-                        <Link to='/forgottenPassword' >
-                            <Typography variant="body1" className={classes.formEntry} >
-                                Forgotten Password?
-                            </Typography>
-                        </Link>
+                        <TextField placeholder="confirm Password" label="ConfirmPassword" type="password" fullWidth className={classes.formEntry} name="confirmPassword" onChange={this.handleTextInputChange} />
                     </Grid>
                     <Grid item xs={12}>
-                        <Button variant="raised" color="primary" fullWidth>
+                        <Button variant="contained" color="primary" fullWidth>
                             Log In
                         </Button>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="body1" className={classes.formEntry} >
-                            Don't have an account? Sign up <a href='/signup'>here</a>
+                            Already have an account? Log in <a href='/signup'>here</a>
                         </Typography>
                     </Grid>
                 </Grid>
@@ -71,4 +79,4 @@ class Login extends Component{
     }
 }
 
-export default withStyles(styles)(Login)
+export default withStyles(styles)(Signup)
