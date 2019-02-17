@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Card, withStyles, Typography, TextField, Grid, Button } from '@material-ui/core'
 import Logo from '../images/ValhallaSmall.png'
+import { Redirect } from 'react-router-dom'
 
 const styles = theme => ({
     card:{
@@ -37,7 +38,8 @@ class Signup extends Component{
             validUser: {
                 username: null,
                 password: null,
-            }
+            },
+            redirect: false,
         }
 
         this.handleTextInputChange = this.handleTextInputChange.bind(this)
@@ -49,17 +51,7 @@ class Signup extends Component{
     }
 
     validateUser(){
-        if(this.state.password === this.state.confirmPassword && this.state.username !== ""){
-            this.setState({
-                error: "",
-                validUser: {
-                    username: this.state.username,
-                    password: this.state.password
-                },
-            })
-        }
-        
-        if(this.state.username === "" || this.state.username === null){
+       if(this.state.username === "" || this.state.username === null){
             this.setState({
                 error: "Please enter a username",
             })
@@ -72,6 +64,15 @@ class Signup extends Component{
             this.setState({
                 error: "Passwords do not match",
             })
+        }else{
+            this.setState({
+                error: "",
+                validUser: {
+                    username: this.state.username,
+                    password: this.state.password
+                },
+                redirect: true,
+            }, () => console.log('made it here'))
         }
     }
 
@@ -93,12 +94,19 @@ class Signup extends Component{
         console.log(response)
     }
 
+    renderRedirect = () => {
+        if(this.state.redirect){
+            return <Redirect to='/' />
+        }
+    }
+
     render(){
 
         const { classes } = this.props
 
         return(
             <Card className={classes.card}>
+                {this.renderRedirect()}
                 <img src={Logo} style={{marginTop : '10px'}} />    
                 <Typography variant="headline" className={classes.formTitle}>
                     Sign up to Valhalla
