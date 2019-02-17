@@ -1,9 +1,11 @@
-const express = require('express')
+import express from 'express'
+import mongoose from 'mongoose'
+
 const app = express()
 const port = process.env.PORT || 5000;
 let io = require('socket.io')
-let mongoose = require('mongoose')
 let bodyParser = require('body-parser');
+
 
 let God = mongoose.model('god', {
     name: String,
@@ -52,4 +54,8 @@ mongoose.connect(dbURL, {useNewUrlParser: true }, (err) =>{
 
 app.get('/express_backend', (req, res) => {
     res.send({express:'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'})
+})
+
+app.get('/something', (req, res) => {
+    res.send('hello world')
 })
